@@ -1,37 +1,22 @@
-<?php
-	include("libs/PHPCrawler.class.php");
-
-	class MyCrawler extends PHPCrawler {
-		//Override the handleDocumentInfo function. Echo whatever you want for each url followed
-	  	function handleDocumentInfo($DocInfo) {
-	  		//Echo the url as link
-			echo "<a href='{$DocInfo->url}'>{$DocInfo->url}</a>".(PHP_SAPI == "cli"? "\n":"<br />");
-			flush();
-	  	} 
-	}
-	//Define specific rules for each site. In this case we'll be sending URL's from different domains.
-	function setRules($crawler,$url){
-		//Vendobara
-		if(strpos($url, "vendobara")!==false){
-			$crawler->addURLFollowRule("#^.*gratis/detalle.*$# i");
-			$crawler->addURLFilterRule("#(=false|=true|SSL|\()$# i");		
-		}
-		//sevendeporquesevende
-		else if(strpos($url, "sevendeporquesevende")!==false){
-			$crawler->addURLFollowRule("#^.*detalles_anuncio.*$# i");
-			$crawler->addURLFilterRule("#(jpg)$# i");		
-		}
-	}
-	//If any URL is sent as parameter
-	if(isset($_GET["url"])){
-		$url=$_GET["url"];
-		//Init class
-		$crawler = new MyCrawler();
-		$crawler->setURL($url);
-		$crawler->enableCookieHandling(true);
-		//Check for the rules for each specific site
-		setRules($crawler,$url);
-		//Start crawling
-		$crawler->go();
-	}
-?>
+<!DOCTYPE> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<script type='text/javascript' src='js/jquery-1.10.2.min.js'></script>
+		<script type='text/javascript' src='js/bootstrap.min.js'></script>
+		<script type='text/javascript'>var sitesSearch=Array("sevendeporquesevende","vendobara");</script>
+		<script type='text/javascript' src='js/custom.js'></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/custom.css" rel="stylesheet">
+		<title>Ventas - Webcrawler</title>
+	</head>
+	<body>
+		<div id='site-wrapper' class='well'>
+			<div class='well'>
+				<h1>Buscar Ventas en Hermosillo</h1>
+				<input type='text' name='search' id='search' class='form-control'/>
+				<button id='search-btn' class='btn btn-default'>Buscar</button>
+			</div>
+			<div id='results' class='well not-shown'></div>
+		</div>
+	</body>
+</html>
