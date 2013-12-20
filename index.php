@@ -16,7 +16,7 @@
 				<input type='text' name='search' id='search' class='form-control'/>
 				<button id='search-btn' class='btn btn-default'>Buscar</button>
 			</div>
-			<div id='results' class='well not-shown'></div>
+			<div id='results' class='not-shown'></div>
 		</div>
 	</body>
 </html>

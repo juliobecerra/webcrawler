@@ -1,3 +1,9 @@
 .not-shown{
 	display: none;
 }
+#site-wrapper{
+	max-width: 980px;
+}
+*{
+	margin:0 auto;
+}

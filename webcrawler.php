@@ -6,7 +6,7 @@
 		//Override the handleDocumentInfo function. Echo whatever you want for each url followed
 	  	function handleDocumentInfo($DocInfo) {
 	  		//Echo the url as link
-			echo "<a href='{$DocInfo->url}'>{$DocInfo->url}</a>".(PHP_SAPI == "cli"? "\n":"<br />");
+			echo "<a target='_blank' href='{$DocInfo->url}'>{$DocInfo->url}</a>".(PHP_SAPI == "cli"? "\n":"<br />");
 			flush();
 	  	} 
 	}
